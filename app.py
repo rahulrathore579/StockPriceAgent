@@ -34,9 +34,14 @@ except ValueError:
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    index_path = os.path.join(BASE_DIR, "static", "index.html")
-    with open(index_path, "r", encoding="utf-8") as f:
-        return f.read()
+    try:
+        index_path = os.path.join(BASE_DIR, "static", "index.html")
+        with open(index_path, "r", encoding="utf-8") as f:
+            return f.read()
+    except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        return HTMLResponse(content=f"<pre>Error loading index.html:\n{str(e)}\n\nDetails:\n{error_details}</pre>", status_code=500)
 
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):
