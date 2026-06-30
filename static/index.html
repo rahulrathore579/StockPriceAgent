@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Agent - AI Market Assistant</title>
+    <meta name="description" content="AI powered stock price agent built with LangChain and Groq.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Header -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-icon">📈</div>
+                <h1>Stock Agent</h1>
+            </div>
+            <div class="status-indicator">
+                <span class="dot pulse"></span>
+                <span>Systems Online</span>
+            </div>
+            <div class="examples">
+                <h3>Try Asking:</h3>
+                <button class="example-btn">What is the current share price of Apple?</button>
+                <button class="example-btn">Show me TCS stock price</button>
+                <button class="example-btn">Give me the 1-month history of Tesla</button>
+                <button class="example-btn">What is RELIANCE.NS trading at right now?</button>
+            </div>
+            <div class="footer-note">
+                Powered by LangChain & Groq
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <div id="chat-history" class="chat-history">
+                <div class="message system-message fade-in-up">
+                    <div class="avatar">🤖</div>
+                    <div class="content">
+                        <p>Welcome to Stock Agent. Ask me about any company's share price!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <form id="chat-form">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Ask about a stock (e.g., 'What is Apple's price?')..."
+                        autocomplete="off"
+                        required
+                    >
+                    <button type="submit" id="send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
