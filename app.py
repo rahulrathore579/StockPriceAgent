@@ -10,11 +10,14 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent import build_agent
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 app = FastAPI(title="Stock Price Agent API")
 
 # Mount static directory for frontend
-os.makedirs("static", exist_ok=True)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+static_path = os.path.join(BASE_DIR, "static")
+os.makedirs(static_path, exist_ok=True)
+app.mount("/static", StaticFiles(directory=static_path), name="static")
 
 class ChatRequest(BaseModel):
     message: str
@@ -31,7 +34,8 @@ except ValueError:
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    with open("static/index.html", "r", encoding="utf-8") as f:
+    index_path = os.path.join(BASE_DIR, "static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
         return f.read()
 
 @app.post("/api/chat", response_model=ChatResponse)
